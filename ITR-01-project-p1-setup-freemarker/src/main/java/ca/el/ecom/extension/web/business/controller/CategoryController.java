@@ -1,4 +1,4 @@
-package ca.el.ecom.extension.bc.web.controller;
+package ca.el.ecom.extension.web.business.controller;
 
 import java.util.List;
 

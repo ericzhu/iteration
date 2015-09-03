@@ -16,7 +16,7 @@
 
 	<default-servlet-handler />
 
-	<context:component-scan base-package="ca.el.ecom.extension.bc" />
+	<context:component-scan base-package="ca.el.ecom.extension.web.customer" />
 
 	<interceptors>
 		<beans:bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" p:paramName="lang" />
@@ -39,7 +39,7 @@
 		<beans:property name="templateLoaderPaths">
 			<beans:array>
 				<beans:value>classpath:/</beans:value>
-				<beans:value>/WEB-INF/views/bc/</beans:value>
+				<beans:value>/WEB-INF/views/customer/</beans:value>
 			</beans:array>
 		</beans:property>
 		<beans:property name="freemarkerSettings">
