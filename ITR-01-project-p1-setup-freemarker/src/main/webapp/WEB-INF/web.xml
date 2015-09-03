@@ -44,7 +44,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>businessServlet</servlet-name>
-		<url-pattern>/bc/*</url-pattern>
+		<url-pattern>/business/*</url-pattern>
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>customerServlet</servlet-name>
