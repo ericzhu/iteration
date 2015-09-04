@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc
+	http://www.springframework.org/schema/mvc/spring-mvc.xsd
+	http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd">
+	
+	<beans:import resource="ecom-servlet-context-common.xml"/>
+	
+	<annotation-driven />
+
+	<resources location="/resources/, classpath:/META-INF/web-resources/" mapping="/resources/**" />
+
+	<default-servlet-handler />
+
+	<context:component-scan base-package="ca.el.ecom.extension.web.customer" />
+
+	<interceptors>
+		<beans:bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" p:paramName="lang" />
+		<beans:bean class="org.springframework.orm.jpa.support.OpenEntityManagerInViewInterceptor">
+			<beans:property name="entityManagerFactory" ref="entityManagerFactory" />
+		</beans:bean>
+	</interceptors>
+
+	<beans:bean id="viewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+		<beans:property name="contentType" value="text/html; charset=UTF-8" />
+		<beans:property name="suffix" value=".ftl" />
+	</beans:bean>
+
+	<beans:bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<beans:property name="basenames" value="WEB-INF/i18n/messages,WEB-INF/i18n/application" />
+		<beans:property name="fallbackToSystemLocale" value="false" />
+	</beans:bean>
+
+	<beans:bean id="freeMarkerConfigurer" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+		<beans:property name="templateLoaderPaths">
+			<beans:array>
+				<beans:value>classpath:/</beans:value>
+				<beans:value>/WEB-INF/views/customer/</beans:value>
+			</beans:array>
+		</beans:property>
+		<beans:property name="freemarkerSettings">
+			<beans:props>
+				<beans:prop key="defaultEncoding">UTF-8</beans:prop>
+				<beans:prop key="url_escaping_charset">UTF-8</beans:prop>
+				<beans:prop key="template_update_delay">3600</beans:prop>
+				<beans:prop key="tag_syntax">auto_detect</beans:prop>
+				<beans:prop key="whitespace_stripping">true</beans:prop>
+				<beans:prop key="classic_compatible">true</beans:prop>
+				<beans:prop key="number_format">0.######</beans:prop>
+				<beans:prop key="boolean_format">true,false</beans:prop>
+				<beans:prop key="datetime_format">yyyy-MM-dd</beans:prop>
+				<beans:prop key="date_format">yyyy-MM-dd</beans:prop>
+				<beans:prop key="time_format">HH:mm:ss</beans:prop>
+				<beans:prop key="object_wrapper">freemarker.ext.beans.BeansWrapper</beans:prop>
+			</beans:props>
+		</beans:property>
+		<beans:property name="freemarkerVariables">
+			<beans:map>
+				<beans:entry key="message" value-ref="messageMethod" />
+			</beans:map>
+		</beans:property>
+	</beans:bean>
+	
+	<beans:bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver" p:cookieName="locale" p:cookieMaxAge="3600000" />
+</beans:beans>

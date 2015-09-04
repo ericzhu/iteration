@@ -1,0 +1,1 @@
+From customer center ${message("hello_springmvc")}
