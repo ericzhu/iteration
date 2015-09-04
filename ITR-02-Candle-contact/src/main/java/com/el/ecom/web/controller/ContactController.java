@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -49,7 +50,7 @@ public class ContactController {
    }
 
    @RequestMapping(value = "/{id}", params = "form", method = RequestMethod.POST)
-   public String update(Contact contact,
+   public String update(@Valid Contact contact,
       BindingResult bindingResult,
       Model uiModel,
       HttpServletRequest httpServletRequest,
@@ -86,7 +87,7 @@ public class ContactController {
    }
 
    @RequestMapping(params = "form", method = RequestMethod.POST)
-   public String create(Contact contact, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model uiModel, HttpServletRequest httpServletRequest, Locale locale) {
+   public String create(@Valid Contact contact, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model uiModel, HttpServletRequest httpServletRequest, Locale locale) {
       
       if(bindingResult.hasErrors()) {
          uiModel.addAttribute("message", new Message("error", messageSource.getMessage("contact_save_fail", new Object[]{}, locale)));
