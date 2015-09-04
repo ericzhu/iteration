@@ -47,7 +47,7 @@ public class MessageMethod implements TemplateMethodModelEx, ApplicationContextA
             message = applicationContext.getMessage(code, args, locale);
          }
          else {
-            message = applicationContext.getMessage(code, null, locale);
+            message = applicationContext.getMessage(code, new Object[] {}, locale);
          }
          return new SimpleScalar(message);
       }
