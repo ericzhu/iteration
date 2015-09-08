@@ -56,7 +56,6 @@ public class JpaIntegrationTest extends BaseIntegrationTests {
       for (Category c : categoryList) {
          System.out.println(c.getName());
       }
-      
       System.out.println(categoryService.count());
       
    }

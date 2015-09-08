@@ -21,6 +21,7 @@ import ca.el.ecom.core.repository.db.CategoryRepository;
 @Repository("categoryRepositoryJpa")
 public class CategoryRepositoryJpa extends _BaseRepositoryJpa<Category, Long> implements CategoryRepository {
 
+   @Override
    public List<Category> findRoots(Integer count) {
       String jpql = "select c from Category c where c.parent is null order by c.sortOrder asc";
       TypedQuery<Category> query = entityManager.createQuery(jpql, Category.class);
@@ -30,6 +31,7 @@ public class CategoryRepositoryJpa extends _BaseRepositoryJpa<Category, Long> im
       return query.getResultList();
    }
 
+   @Override
    public List<Category> findParents(Category category, boolean recursive, Integer count) {
       if (category == null || category.getParent() == null) {
          return Collections.emptyList();
@@ -53,6 +55,7 @@ public class CategoryRepositoryJpa extends _BaseRepositoryJpa<Category, Long> im
       return query.getResultList();
    }
 
+   @Override
    public List<Category> findChildren(Category category, boolean recursive, Integer count) {
 
       TypedQuery<Category> query = null;
@@ -60,7 +63,8 @@ public class CategoryRepositoryJpa extends _BaseRepositoryJpa<Category, Long> im
       if (recursive) {
          if (category != null) {
             String jpql = "select c from Category c where c.treePath like :treePath order by c.grade asc, c.sortOrder asc";
-            query = entityManager.createQuery(jpql, Category.class).setParameter("treePath", "%" + Category.TREE_PATH_SEPARATOR + category.getId() + Category.TREE_PATH_SEPARATOR + "%");
+            query = entityManager.createQuery(jpql, Category.class).setParameter("treePath",
+               "%" + Category.TREE_PATH_SEPARATOR + category.getId() + Category.TREE_PATH_SEPARATOR + "%");
          }
          else {
             String jpql = "select c from Category c order by c.grade asc, c.sortOrder asc";
@@ -83,7 +87,7 @@ public class CategoryRepositoryJpa extends _BaseRepositoryJpa<Category, Long> im
       }
    }
 
-   private void sort(List<Category> categoryList) {
+   protected void sort(List<Category> categoryList) {
       if (CollectionUtils.isEmpty(categoryList)) {
          return;
       }
