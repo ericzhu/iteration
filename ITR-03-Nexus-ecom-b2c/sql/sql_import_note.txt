@@ -1,0 +1,3 @@
+mysql -u root -p --default-character-set=utf8
+source C:/weblink/project/ecomlogix/webstore.beta/sql/mysql/init.sql
+source C:/weblink/project/ecomlogix/webstore.beta/sql/mysql/demo.sql
