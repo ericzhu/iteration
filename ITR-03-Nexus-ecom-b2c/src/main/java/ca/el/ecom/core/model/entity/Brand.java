@@ -37,7 +37,7 @@ public class Brand extends _SortableEntity<Long> {
 
    @NotEmpty
    @Length(max = 200)
-   @Column(name = "name", nullable = false)
+   @Column(nullable = false)
    public String getName() {
       return name;
    }
@@ -47,8 +47,8 @@ public class Brand extends _SortableEntity<Long> {
    }
 
    @NotNull
-   @Enumerated(EnumType.STRING)
-   @Column(name = "type", nullable = false)
+   @Enumerated(EnumType.ORDINAL)
+   @Column(nullable = false)
    public Type getType() {
       return type;
    }
@@ -59,7 +59,6 @@ public class Brand extends _SortableEntity<Long> {
 
    @Length(max = 200)
    @Pattern(regexp = "^(?i)(http:\\/\\/|https:\\/\\/|\\/).*$")
-   @Column(name = "logo")
    public String getLogo() {
       return logo;
    }
@@ -70,7 +69,6 @@ public class Brand extends _SortableEntity<Long> {
 
    @Length(max = 200)
    @Pattern(regexp = "^(?i)(http:\\/\\/|https:\\/\\/|ftp:\\/\\/|mailto:|\\/|#).*$")
-   @Column(name = "url")
    public String getUrl() {
       return url;
    }
@@ -79,7 +77,6 @@ public class Brand extends _SortableEntity<Long> {
       this.url = url;
    }
 
-   @Column(name = "introduction")
    public String getIntroduction() {
       return introduction;
    }

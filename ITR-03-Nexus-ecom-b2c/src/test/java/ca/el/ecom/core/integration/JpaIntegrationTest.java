@@ -13,9 +13,13 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import ca.el.ecom.core.BaseIntegrationTests;
+import ca.el.ecom.core.model.entity.Brand;
 import ca.el.ecom.core.model.entity.Category;
+import ca.el.ecom.core.model.entity.Promotion;
 import ca.el.ecom.core.query.Sort;
+import ca.el.ecom.core.service.BrandService;
 import ca.el.ecom.core.service.CategoryService;
+import ca.el.ecom.core.service.PromotionService;
 
 public class JpaIntegrationTest extends BaseIntegrationTests {
 
@@ -28,6 +32,12 @@ public class JpaIntegrationTest extends BaseIntegrationTests {
 
    @Inject
    CategoryService      categoryService;
+
+   @Inject
+   PromotionService     promotionService;
+
+   @Inject
+   BrandService         brandService;
 
    @Test
    public void test_entityManagerFactory_injected() {
@@ -52,11 +62,17 @@ public class JpaIntegrationTest extends BaseIntegrationTests {
    public void test_categoryService_sort() {
       Sort sort = Sort.asc("name");
       List<Category> categoryList = categoryService.findList(null, null, Arrays.asList(sort));
-      
+
       for (Category c : categoryList) {
          System.out.println(c.getName());
       }
       System.out.println(categoryService.count());
-      
+
    }
+
+   @Test
+   public void test_PromotionService() {
+      List<Promotion> promotions = promotionService.findAll();
+      System.out.println(promotions.size());
+   }   
 }

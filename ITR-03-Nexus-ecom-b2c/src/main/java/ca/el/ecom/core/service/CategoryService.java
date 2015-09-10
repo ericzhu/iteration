@@ -14,4 +14,10 @@ public interface CategoryService extends _BaseService<Category, Long> {
    List<Category> findParents(Category category, boolean recursive, Integer count);
 
    List<Category> findParents(Long categoryId, boolean recursive, Integer count, boolean useCache);
+
+   List<Category> findTree();
+
+   List<Category> findChildren(Category category, boolean recursive, Integer count);
+
+   List<Category> findChildren(Long categoryId, boolean recursive, Integer count, boolean useCache);
 }

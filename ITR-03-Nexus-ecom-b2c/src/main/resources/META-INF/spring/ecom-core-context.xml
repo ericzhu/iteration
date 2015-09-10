@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" 
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:jdbc="http://www.springframework.org/schema/jdbc" 
-	xmlns:jpa="http://www.springframework.org/schema/data/jpa" 
-	xmlns:tx="http://www.springframework.org/schema/tx"
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:jpa="http://www.springframework.org/schema/data/jpa" xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:cache="http://www.springframework.org/schema/cache"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
@@ -54,7 +50,8 @@
 		<property name="packagesToScan" value="ca.el.ecom.core.model" />
 		<property name="jpaProperties">
 			<props>
-				<prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop>
+				<prop key="hibernate.ejb.naming_strategy">org.hibernate.cfg.ImprovedNamingStrategy</prop>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
 				<prop key="hibernate.max_fetch_depth">3</prop>
 				<prop key="hibernate.jdbc.fetch_size">50</prop>
 				<prop key="hibernate.jdbc.batch_size">10</prop>
@@ -69,31 +66,31 @@
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
 
-	<bean id="ehCacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
-		<property name="configLocation" value="classpath:/ehcache.xml" />
-		<property name="shared" value="true" />
-	</bean>
+	<!-- <bean id="ehCacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean"> -->
+	<!-- <property name="configLocation" value="classpath:/ehcache.xml" /> -->
+	<!-- <property name="shared" value="true" /> -->
+	<!-- </bean> -->
 
-	<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
-		<property name="cacheManager" ref="ehCacheManager" />
-	</bean>
+	<!-- <bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager"> -->
+	<!-- <property name="cacheManager" ref="ehCacheManager" /> -->
+	<!-- </bean> -->
 
-	<cache:annotation-driven cache-manager="cacheManager" />
+	<!-- <cache:annotation-driven cache-manager="cacheManager" /> -->
 
-	<bean class="org.springframework.cache.ehcache.EhCacheFactoryBean" lazy-init="false">
-		<property name="cacheManager" ref="ehCacheManager" />
-		<property name="cacheName" value="articleHits" />
-		<property name="cacheEventListeners">
-			<ref bean="cacheEventListener" />
-		</property>
-	</bean>
+	<!-- <bean class="org.springframework.cache.ehcache.EhCacheFactoryBean" lazy-init="false"> -->
+	<!-- <property name="cacheManager" ref="ehCacheManager" /> -->
+	<!-- <property name="cacheName" value="articleHits" /> -->
+	<!-- <property name="cacheEventListeners"> -->
+	<!-- <ref bean="cacheEventListener" /> -->
+	<!-- </property> -->
+	<!-- </bean> -->
 
-	<bean class="org.springframework.cache.ehcache.EhCacheFactoryBean" lazy-init="false">
-		<property name="cacheManager" ref="ehCacheManager" />
-		<property name="cacheName" value="goodsHits" />
-		<property name="cacheEventListeners">
-			<ref bean="cacheEventListener" />
-		</property>
-	</bean>
+	<!-- <bean class="org.springframework.cache.ehcache.EhCacheFactoryBean" lazy-init="false"> -->
+	<!-- <property name="cacheManager" ref="ehCacheManager" /> -->
+	<!-- <property name="cacheName" value="goodsHits" /> -->
+	<!-- <property name="cacheEventListeners"> -->
+	<!-- <ref bean="cacheEventListener" /> -->
+	<!-- </property> -->
+	<!-- </bean> -->
 
 </beans>
