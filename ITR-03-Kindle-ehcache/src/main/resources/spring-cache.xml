@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" 
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:cache = "http://www.springframework.org/schema/cache"
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cache="http://www.springframework.org/schema/cache"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 	http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd">
 
@@ -13,7 +11,7 @@
 		<property name="cacheManager" ref="ehcacheManager" />
 		<property name="transactionAware" value="true" />
 	</bean>
-	
-	<cache:annotation-driven cache-manager="cacheManager" proxy-target-class="true"/>
+
+	<cache:annotation-driven cache-manager="cacheManager" proxy-target-class="true" />
 
 </beans>

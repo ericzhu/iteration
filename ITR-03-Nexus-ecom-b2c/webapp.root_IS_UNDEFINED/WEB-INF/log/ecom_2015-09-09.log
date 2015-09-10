@@ -1,0 +1,4 @@
+2015-09-09 21:19:39 [main] WARN  org.hibernate.engine.jdbc.spi.SqlExceptionHelper - SQL Error: 1054, SQLState: 42S22
+2015-09-09 21:19:39 [main] ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper - Unknown column 'promotion0_.beginDate' in 'field list'
+2015-09-09 21:29:56 [main] WARN  org.hibernate.engine.jdbc.spi.SqlExceptionHelper - SQL Error: 1054, SQLState: 42S22
+2015-09-09 21:29:56 [main] ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper - Unknown column 'promotion0_.image' in 'field list'

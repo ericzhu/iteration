@@ -39,6 +39,7 @@ DROP TABLE IF EXISTS promotion;
 CREATE TABLE promotion (
 	id bigint not null auto_increment,
 	version bigint(20) NOT NULL,
+	image varchar(255) DEFAULT NULL,
 	create_date datetime not null, 
 	update_date datetime not null, 
 	sort_order integer, 
