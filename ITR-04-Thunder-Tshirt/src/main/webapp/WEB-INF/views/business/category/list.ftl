@@ -1,0 +1,1 @@
+Haha ${message("hello_springmvc")}

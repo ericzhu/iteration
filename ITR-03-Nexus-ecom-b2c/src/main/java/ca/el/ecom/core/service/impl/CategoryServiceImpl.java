@@ -14,7 +14,7 @@ import ca.el.ecom.core.repository.db.CategoryRepository;
 import ca.el.ecom.core.repository.db._BaseRepository;
 import ca.el.ecom.core.service.CategoryService;
 
-@Service("categoryService")
+@Service("categoryServiceImpl")
 public class CategoryServiceImpl extends _BaseServiceImpl<Category, Long> implements CategoryService {
 
    @Inject
@@ -58,9 +58,9 @@ public class CategoryServiceImpl extends _BaseServiceImpl<Category, Long> implem
    }
 
    @Override
+   @Transactional(readOnly = true)
    public List<Category> findTree() {
-      // TODO Auto-generated method stub
-      return null;
+      return categoryRepository.findChildren(null, true, null);
    }
 
    @Override
